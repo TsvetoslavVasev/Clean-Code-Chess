@@ -1,5 +1,14 @@
-#include "ChessBishop.h"
+#pragma once
+#include "ChessKnight.h"
 
+class ChessBishop : public ChessPiece
+{
+private:
+	char getPiece()const;
+	bool areSquaresLegal(int currRow, int currCol, int destRow, int destCol, ChessPiece* board[8][8]);
+public:
+	ChessBishop(char Color);
+};
 
 ChessBishop::ChessBishop(char Color) : ChessPiece(Color) {}
 
@@ -12,7 +21,7 @@ ChessBishop::ChessBishop(char Color) : ChessPiece(Color) {}
  {
 	 if ((destCol - currCol == destRow - currRow) || (destCol - currCol == currRow - destRow)) 
 	 {
-		 //// Check if all crossed positions before the desired one are free
+		 // Check if all crossed positions before the desired one are free
 
 		 int rowOffset = (destRow - currRow > 0) ? 1 : -1;
 		 int colOffset = (destCol - currCol > 0) ? 1 : -1;
