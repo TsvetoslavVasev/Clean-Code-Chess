@@ -19,7 +19,7 @@ bool ChessPawn::areSquaresLegal(int currRow, int currCol, int destRow, int destC
 	ChessPiece* Dest = board[destRow][destCol];
 	if (Dest == 0)
 	{
-		// Ако позицията е свободна
+		// Logic in case the desired position is free
 		if (currCol == destCol)
 		{
 			if (getColor() == 'W')
@@ -34,7 +34,7 @@ bool ChessPawn::areSquaresLegal(int currRow, int currCol, int destRow, int destC
 	}
 	else 
 	{
-		//Ако позицията е заета, тоест пешката може асмо по диагонал
+		// Logic if the position is not available. The pawn can move only diagonal
 		if ((currCol == destCol + 1) || (currCol == destCol - 1))
 		{
 			if (getColor() == 'W') 

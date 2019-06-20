@@ -17,10 +17,10 @@ char ChessQueen::getPiece()const
 }
 bool ChessQueen::areSquaresLegal(int currRow, int currCol, int destRow, int destCol, ChessPiece* board[8][8])
 {
-	//Логика от топа
+	//Logic from the rook class
 	if (currRow == destRow)
 	{
-		// Вертикален ход на топа, който царицата използва
+		// Rook's vertical move which the queen uses
 		int colOffset = (destCol - currCol > 0) ? 1 : -1;
 		for (int checkCol = currCol + colOffset; checkCol != destCol; checkCol = checkCol + colOffset)
 		{
@@ -30,7 +30,7 @@ bool ChessQueen::areSquaresLegal(int currRow, int currCol, int destRow, int dest
 	}
 	else if (destCol == currCol)
 	{
-		// Хоризонтален ход на топа, който царицата изпозлва
+		// Rook's horizontal move which the queen uses
 		int rowOffset = (destRow - currRow > 0) ? 1 : -1;
 		for (int checkRow = currRow + rowOffset; checkRow != destRow; checkRow = checkRow + rowOffset)
 		{
@@ -38,7 +38,7 @@ bool ChessQueen::areSquaresLegal(int currRow, int currCol, int destRow, int dest
 		}
 		return true;
 	}
-	//Логика от офицера
+	// Logic from bishop class
 	else if ((destCol - currCol == destRow - currRow) || (destCol - currCol == currRow - destRow))
 	{
 

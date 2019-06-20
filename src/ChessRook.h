@@ -20,8 +20,8 @@ bool ChessRook::areSquaresLegal(int currRow, int currCol, int destRow, int destC
 {
 	if (currRow == destRow) 
 	{
-		// Проверяваме дали всички пресичащи се позиции преди желаната са празни
-		//хоризонтален ход
+        // Check if all crossing positions before the wanted one are empty
+        // Horizontal move
 		int colOffset = (destCol - currCol > 0) ? 1 : -1;
 		for (int checkCol = currCol + colOffset; checkCol != destCol; checkCol = checkCol + colOffset)
 		{
@@ -31,8 +31,8 @@ bool ChessRook::areSquaresLegal(int currRow, int currCol, int destRow, int destC
 	}
 	else if (destCol == currCol)
 	{
-		// Проверяваме дали всички пресичащи се позиции преди желаната са празни
-		//вертикален ход
+        // Check if all crossing positions before the wanted one are empty
+        // Vertical move
 		int rowOffset = (destRow - currRow > 0) ? 1 : -1;
 		for (int checkRow = currRow + rowOffset; checkRow != destRow; checkRow = checkRow + rowOffset) 
 		{

@@ -18,8 +18,8 @@ char ChessKnight::getPiece()const
 }
 bool ChessKnight::areSquaresLegal(int currRow, int currCol, int destRow, int destCol, ChessPiece* board[8][8]) 
 {
-	//В случая на коня няма значение дали желанта позиция е заета или не, тъй като не променя движението
-	if ((currCol == destCol + 1) || (currCol == destCol - 1))
+	// In the case of the knight it does not matter if the desired position is taken or not because it does not change the movement
+    if ((currCol == destCol + 1) || (currCol == destCol - 1))
 	{
 		if ((currRow == destRow + 2) || (currRow == destRow - 2)) return true;
 	}
