@@ -23,7 +23,7 @@ ChessBoard::ChessBoard()
 			myBoard[row][col] = 0;
 		}
 	}
-	// Намираме и поставяме черните пешки
+	// We locate and put the black pawns in place
 	for (int col = 0; col < 8; col++)
 	{
 		myBoard[6][col] = new ChessPawn('B');
@@ -36,8 +36,9 @@ ChessBoard::ChessBoard()
 	myBoard[7][5] = new ChessBishop('B');
 	myBoard[7][6] = new ChessKnight('B');
 	myBoard[7][7] = new ChessRook('B');
-	// Намираме и поставяме белите пешки
-	for (int col = 0; col < 8; col++)
+	
+    // We locate and put the white pawns in place
+    for (int col = 0; col < 8; col++)
 	{
 		myBoard[1][col] = new ChessPawn('W');
 	}
@@ -64,13 +65,13 @@ ChessBoard::~ChessBoard()
 }
 void ChessBoard::print()const
 {
-	//определяме размера на квадратчетата, така че да се изпечатат симетрично
+	// We fix the size of the squares in order to look symmetric
 	const int squareWidth = 4;
 	const int squareHeight = 3;
 	for (int row = 0; row < 8 * squareHeight; row++)
 	{
 		int squareRow = row / squareHeight;
-		// Принтираме лявата граница с цифри
+		// We print the left most boundry with numbers
 		if (row % 3 == 1)
 		{
 			std::cout << '-' << (char)('1' + 7 - squareRow) << '-';
@@ -79,7 +80,7 @@ void ChessBoard::print()const
 		{
 			std::cout << "---";
 		}
-		// Принтираме дъската
+		// We print the board
 		for (int col = 0; col < 8 * squareWidth; col++)
 		{
 			int squareCol = col / squareWidth;
@@ -108,7 +109,7 @@ void ChessBoard::print()const
 		}
 		std::cout << std::endl;
 	}
-	// Принтираме долната граница с цифри
+	// We print the bottom boundry with numbers
 	for (int row = 0; row < squareHeight; row++) 
 	{
 		if (row % 3 == 1) 
@@ -141,7 +142,7 @@ void ChessBoard::print()const
 
 bool ChessBoard::isInCheck(char color)
 {
-	// Променливи, които пазят положението на царя
+	// Two variables which hold the king's current possition
 	int kingRow;
 	int kingCol;
 	for (int row = 0; row < 8; row++)
@@ -161,7 +162,7 @@ bool ChessBoard::isInCheck(char color)
 			}
 		}
 	}
-	// Обхождаме противниковите фигури да проверим дали царя е в шасх
+	/// We go through the opponent's pieces to check if the king is in check
 	for (int row = 0; row < 8; row++)
 	{
 		for (int col = 0; col < 8; col++)
@@ -184,14 +185,14 @@ bool ChessBoard::isInCheck(char color)
 
 bool ChessBoard::canMove(char color)
 {
-	// Oбхождаме всички фигури
+	// We got through all the chess pieces
 	for (int row = 0; row < 8; row++)
 	{
 		for (int col = 0; col < 8; col++)
 		{
 			if (myBoard[row][col] != 0)
 			{
-				//Проверка дали ако фигурата е на текучия на ход играч дали има възможен ход
+				//Check if the piece of the current player has a valid move
 				if (myBoard[row][col]->getColor() == color)
 				{
 					for (int moveRow = 0; moveRow < 8; moveRow++) 
@@ -200,7 +201,7 @@ bool ChessBoard::canMove(char color)
 						{
 							if (myBoard[row][col]->isLegalMove(row, col, moveRow, moveCol, myBoard))
 							{
-								// Правим хода ако е възможен и правим проверка дали царят е в шах
+								// We make the move if it's valid and check if the king is in check
 								ChessPiece* temp = myBoard[moveRow][moveCol];
 								myBoard[moveRow][moveCol] = myBoard[row][col];
 								myBoard[row][col] = 0;

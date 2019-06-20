@@ -38,7 +38,7 @@ void ChessGame::getNextMove(ChessPiece* game_Board[8][8])
 	do 
 	{
 		gameBoard.print();
-		//Получаваме входа и го конвертираме към координати
+		/// We get the input numbers and covert them to coordinates
 		std::cout << playerTurn << "'s move: ";
 		int startMove;
 		std::cin >> startMove;
@@ -55,31 +55,32 @@ void ChessGame::getNextMove(ChessPiece* game_Board[8][8])
 		stream << playerTurn << " " << (startRow + 1) << " " << (startCol + 1) << " to: " << (endRow + 1) << " " << (endCol + 1) << std::endl;
 		
 
-		//Проверяваме дали индежсите не излизат от дъската  и дали началната позиция и дестинацията са рзлични
-		if ((startRow >= 0 && startRow <= 7) &&
+		// Check if the indices aren't beyond the borders of the board and if the start position and the destination are different
+        if ((startRow >= 0 && startRow <= 7) &&
 			(startCol >= 0 && startCol <= 7) &&
 			(endCol >= 0 && endCol <= 7) &&
 			(endRow >= 0 && endRow <= 7))
 		{
-			//ТУк правим проверката двете позиции да не съвпадат
-			ChessPiece* currPiece = game_Board[startRow][startCol];
-			//Проверка, че фигурата е правилен цвят
-			if ((currPiece != 0) && currPiece->getColor() == playerTurn)
-			{
-				//Проверка дали дестинацията е валидна
+            //Check if the two positions aren't the same
+            ChessPiece* currPiece = game_Board[startRow][startCol];
+            // Check if the piece is the right colour
+            if ((currPiece != 0) && currPiece->getColor() == playerTurn)
+            {
+                // Check if the destination is valid
 				if (currPiece->isLegalMove(startRow, startCol, endRow, endCol, game_Board))
 				{
 					ChessPiece* tempPiece = game_Board[endRow][endCol];
 					game_Board[endRow][endCol] = game_Board[startRow][startCol];
 					game_Board[startRow][startCol] = 0;
-					//Проверяваме дали текущият играч не е в шах
-					if (!gameBoard.isInCheck(playerTurn))
+					// Check if the current player is in check
+                    if (!gameBoard.isInCheck(playerTurn))
 					{
 						delete tempPiece;
 						validMove = true;
 					}
 					else
-					{//ВРъщаме последният ход
+					{
+                        //We return the last move
 						game_Board[startRow][startCol] = game_Board[endRow][endCol];
 						game_Board[endRow][endCol] = tempPiece;
 					}
