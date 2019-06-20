@@ -20,7 +20,7 @@ bool ChessKing::areSquaresLegal(int currRow, int currCol, int destRow, int destC
 {
 	int rowMove = destRow - currRow;
 	int colMove = destCol - currCol;
-	//Проверка дали ходът е с 1 клетка, в която и да е посока
+	// Check id the move is 1-space in either direction
 	if (((rowMove >= -1) && (rowMove <= 1)) &&
 		((colMove >= -1) && (colMove <= 1)))
 	{

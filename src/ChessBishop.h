@@ -21,7 +21,7 @@ ChessBishop::ChessBishop(char Color) : ChessPiece(Color) {}
  {
 	 if ((destCol - currCol == destRow - currRow) || (destCol - currCol == currRow - destRow)) 
 	 {
-		 //Проверяваме дали всички пресичаши се от офицера квадратчета преди желаната позиция са празни
+		 //// Check if all crossed positions before the desired one are free
 
 		 int rowOffset = (destRow - currRow > 0) ? 1 : -1;
 		 int colOffset = (destCol - currCol > 0) ? 1 : -1;
